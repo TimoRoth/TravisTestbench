@@ -1,24 +1,19 @@
 image: Visual Studio 2017
 
 environment:
-  MINICONDA: "C:\\Miniconda3"
+  MINICONDA: "C:\\Miniconda3-x64"
   matrix:
     - CONDA_BUILD_PY: 3.5
     - CONDA_BUILD_PY: 3.6
     - CONDA_BUILD_PY: 3.7
 
 install:
-  - "choco install miniconda3 --params=\"'/D:%MINICONDA%'\""
-  - "SET PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
-  - "python --version"
-  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
-
-  - "conda config --set always_yes yes --set changeps1 no"
-  - "conda config --set anaconda_upload no"
-  - "conda update -q --all"
-  - "conda update -q conda"
-  - "conda info -a"
-  - "conda install -q conda-build conda-verify anaconda-client"
+  - ps: "$env:path = \"$env:MINICONDA;$env:MINICONDA\\Scripts;$env:path\""
+  - ps: "conda config --set always_yes yes --set changeps1 no"
+  - ps: "conda config --set anaconda_upload no"
+  - ps: "conda update -q --all"
+  - ps: "conda update -q conda"
+  - ps: "conda info -a"
 
 build_script:
   - "SET MPLBACKEND=agg"
