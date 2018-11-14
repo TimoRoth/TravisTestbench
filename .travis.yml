@@ -1,0 +1,35 @@
+language: generic
+sudo: required
+dist: trusty
+addons:
+  apt:
+    packages:
+      - ca-certificates
+env:
+  global:
+    - secure: "PDdZL0Utw5LRdSN9IDDXTjOQy/u+QIsRCIJeG0jBuDaJucEa474RuYd++fyK6BDuFqpQQZoO2aKdV7En7TRqVCsUNgWL4sCc6BSxwiojljm0+ZjvPOTJR0u8YvEJM7LoCUz44tkZHRwOMbnlvBGalmHZGFvS4VaqT3xMNvPAVegRGtlQhqcYeZnhRiI37jPFvhH1xM+q0K0IQOp2Zq1Kp+ShTVyHYsv4nm+IuAdgQyumxtIS+vca0CGYCG9Yd70L6WzjE0rcjD9F9R1bACw6E6V2Uwe4HSmW8SuDlH44GU/rVULCbuIM0OlEl/jtsyL58wR/hz0Fu1P3WYlxfR38Yn9ezvRIjO1o+CNg7F1ctWiqMI3NAakd0wwNxIg3DDaRzPulDwRUiCSjO5Zh2+tyDQzkh+1GpfobZKExyGtVj5BnBZmMKsl8oxSmzyTdmYz/VBpil0svG7941uJio6EHy8IdHFNStbG95ZHx4QMlD7LBVwd/wU+VpKn5So7wkwGjNMpWwzi0LKLUNLabyRcf84LDI3f97NYntYldr3JuDhgkH7nX7YOg2ouC3TDfM1B9lgVuGXt8YEnftGwA3G7mhJv+DPA18ACk79w0dQCPlVyTRM2GbgUVFHUHdhmAp2db4Oq0F0JE6ZNbm3VH44rn8f9XVMoW3Qfzz5Kki2aPIvg="
+jobs:
+  fast_finish: true
+  allow_failures:
+    - os: windows
+  include:
+    - stage: make_env
+      script: ./ci/travis_make_env_script.sh
+      env: CONDA_BUILD_PY=3.5 SUB_STAGE=oggm
+      os: windows
+    - stage: make_env
+      script: ./ci/travis_make_env_script.sh
+      env: CONDA_BUILD_PY=3.6 SUB_STAGE=oggm
+      os: windows
+    - stage: make_env
+      script: ./ci/travis_make_env_script.sh
+      env: CONDA_BUILD_PY=3.5 SUB_STAGE=oggmdev
+      os: windows
+    - stage: make_env
+      script: ./ci/travis_make_env_script.sh
+      env: CONDA_BUILD_PY=3.6 SUB_STAGE=oggmdev
+      os: windows
+    - stage: make_env
+      script: ./ci/travis_make_env_script.sh
+      env: CONDA_BUILD_PY=3.7 SUB_STAGE=oggmdev
+      os: windows
