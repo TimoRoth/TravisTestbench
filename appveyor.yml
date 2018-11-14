@@ -1,15 +1,15 @@
 image: Visual Studio 2017
 
 environment:
-  PYTHON: "C:\\Miniconda"
+  MINICONDA: "C:\\Miniconda3"
   matrix:
     - CONDA_BUILD_PY: 3.5
     - CONDA_BUILD_PY: 3.6
     - CONDA_BUILD_PY: 3.7
 
 install:
-  - "choco install miniconda3 --params=\"'/D:%PYTHON%'\""
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "choco install miniconda3 --params=\"'/D:%MINICONDA%'\""
+  - "SET PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
