@@ -8,13 +8,14 @@ environment:
     - CONDA_BUILD_PY: 3.7
 
 install:
-  - ps: "$env:path = \"$env:MINICONDA;$env:MINICONDA\\Scripts;$env:path\""
-  - ps: "conda config --set always_yes yes --set changeps1 no"
-  - ps: "conda config --set anaconda_upload no"
-  - ps: "conda update -q --all"
-  - ps: "conda update -q conda"
-  - ps: "conda info -a"
+  - cmd: "SET PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
+  - cmd: "conda config --set always_yes yes --set changeps1 no"
+  - cmd: "conda config --set anaconda_upload no"
+  - cmd: "conda update -q --all"
+  - cmd: "conda update -q conda"
+  - cmd: "conda info -a"
 
 build_script:
   - "SET MPLBACKEND=agg"
   - "python --version"
+  - sh: "echo $0"
