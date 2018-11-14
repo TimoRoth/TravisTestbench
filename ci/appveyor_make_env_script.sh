@@ -35,8 +35,6 @@ git add "$ENV_FILE_NAME"
 
 git commit -m "$MODEV $TRAVIS_OS_NAME/$ENV_FILE_NAME" || exit 0
 
-exit 0
-
 CNT=0
 while ! git push -q; do
 	CNT=$(( $CNT + 1 ))
