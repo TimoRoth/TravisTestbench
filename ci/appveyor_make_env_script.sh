@@ -6,17 +6,11 @@ cd "$(dirname "$0")/.."
 export MPLBACKEND=agg
 
 conda create -n oggm_env -c oggm -c conda-forge "python=$CONDA_BUILD_PY"
+conda install -n oggm_env -c oggm -c conda-forge "$SUB_STAGE" pytest pytest-mpl
 
 set +x
 source activate oggm_env
 set -x
-
-conda install -c oggm -c conda-forge "$SUB_STAGE" pytest pytest-mpl
-
-# Re-Activate env to inherit new environment variables set by some packages
-set +x
-source activate oggm_env
-set -y
 
 if [[ "$SUB_STAGE" == "oggm" ]]; then
 	pytest --mpl-oggm -k "not test_googlemap" --pyargs oggm
