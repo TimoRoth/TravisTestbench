@@ -12,6 +12,14 @@ set +x
 source activate oggm_env
 set -x
 
+echo "Proj Lib: $PROJ_LIB"
+ls -l "$PROJ_LIB"
+echo
+
+echo "Proj Dir: $PROJ_DIR"
+ls -l "$PROJ_DIR"
+echo
+
 if [[ "$SUB_STAGE" == "oggm" ]]; then
 	pytest --mpl-oggm -k "not test_googlemap" --pyargs oggm
 else
