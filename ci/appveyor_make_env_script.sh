@@ -10,6 +10,11 @@ source activate oggm_env
 
 conda install -c oggm -c conda-forge "$SUB_STAGE" pytest pytest-mpl
 
+# Workaround for broken pyproj on conda-forge for Windows.
+# Check for updates on this from time to time
+# https://github.com/geopandas/geopandas/issues/830
+pip install --upgrade --force-reinstall pyproj
+
 if [[ "$SUB_STAGE" == "oggm" ]]; then
 	pytest --mpl-oggm -k "not test_googlemap" --pyargs oggm
 else
