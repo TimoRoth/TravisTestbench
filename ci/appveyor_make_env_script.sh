@@ -8,17 +8,7 @@ export MPLBACKEND=agg
 conda create -n oggm_env -c oggm -c conda-forge "python=$CONDA_BUILD_PY"
 conda install -n oggm_env -c oggm -c conda-forge "$SUB_STAGE" pytest pytest-mpl
 
-set +x
 source activate oggm_env
-set -x
-
-echo "Proj Lib: $PROJ_LIB"
-ls -l "$PROJ_LIB"
-echo
-
-echo "Proj Dir: $PROJ_DIR"
-ls -l "$PROJ_DIR"
-echo
 
 if [[ "$SUB_STAGE" == "oggm" ]]; then
 	pytest --mpl-oggm -k "not test_googlemap" --pyargs oggm
@@ -30,13 +20,13 @@ ENV_FILE_NAME="${SUB_STAGE}-$(conda list -f -e "$SUB_STAGE" | tail -n1 | cut -d=
 
 conda env export -f "$ENV_FILE_NAME"
 
-git config --global user.email "travis@travis-ci.com"
-git config --global user.name "Travis CI"
+git config --global user.email "ci@appveyor.com"
+git config --global user.name "Appveyor CI"
 
 set +x
 git clone -q "https://${GH_TOKEN}@github.com/OGGM/OGGM-dependency-list" "/tmp/deplist_repo"
 
-DDIR="/tmp/deplist_repo/windows"
+DDIR="/tmp/deplist_repo/windows-64"
 mkdir -p "$DDIR"
 test -f "$DDIR/$ENV_FILE_NAME" && MODEV="Update" || MODEV="Add"
 mv "$ENV_FILE_NAME" "$DDIR"
