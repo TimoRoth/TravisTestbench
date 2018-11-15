@@ -10,6 +10,9 @@ source activate oggm_env
 
 conda install -c oggm -c conda-forge "$SUB_STAGE" pytest pytest-mpl
 
+# Re-Activate env to inherit new environment variables set by some packages
+source activate oggm_env
+
 if [[ "$SUB_STAGE" == "oggm" ]]; then
 	pytest --mpl-oggm -k "not test_googlemap" --pyargs oggm
 else
