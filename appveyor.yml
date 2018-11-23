@@ -2,7 +2,6 @@ image: Visual Studio 2017
 
 environment:
   MINICONDA: "C:\\Miniconda3-x64"
-  PROJ_LIB: "C:\\Miniconda3-x64\\envs\\oggm_env\\share\\proj"
   MPLBACKEND: agg
   GH_TOKEN:
     secure: GNcOo1BaNBVTsgory2xBCXCLH1lBmWTUzEuJx3tsP4k7/8W2oHXmaHW9gM2rMLMq
